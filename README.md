@@ -5,6 +5,6 @@
   - Danie dnia
 - Menu Tab:
   - Klikniecie Dania = Wysuniecie {
-      Dodaj / ilosc
+      Dodaj do koszyka / ilosc
     }
 - Koszyk: { +/- przedmiotow, zatwierdzenie }
