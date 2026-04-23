@@ -2,4 +2,7 @@
 ### TODO:
 - Home Tab
 - Menu Tab:
-  - Koszyk
+  - Klikniecie Pizzy = Wysuniecie {
+      Dodaj / ilosc
+    }
+- Koszyk: { +/- przedmiotow, zatwierdzenie }
