@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Pizzeria.MenuPage">
+
+    <ScrollView>
+        <VerticalStackLayout>
+            <CollectionView x:Name="CollectionMenu" ItemsSource="{Binding Menu}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <HorizontalStackLayout 
+                            MinimumHeightRequest="100"
+                            MaximumHeightRequest="100"
+                            
+                            MinimumWidthRequest="300"
+                            MaximumWidthRequest="300"
+                            >
+
+                            <HorizontalStackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="MenuTab_Tapped"></TapGestureRecognizer>
+                            </HorizontalStackLayout.GestureRecognizers>
+
+                            <Image Source="{Binding Obraz}"
+                                   HeightRequest="50"
+                                   WidthRequest="50"/>
+
+                            <VerticalStackLayout>
+                                <Label Text="{Binding Nazwa}"></Label>
+                                <Label Text="{Binding Cena}"></Label>
+                                <Label Text="{Binding Opis}"></Label>
+                            </VerticalStackLayout>
+                            
+
+                        </HorizontalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
