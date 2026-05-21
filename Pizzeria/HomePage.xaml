@@ -5,6 +5,6 @@
              Title="NewPage1"
              Shell.NavBarIsVisible="False">
     <VerticalStackLayout>
-        <Label Text="Yes"></Label>
+        <Label Text="Home Page"></Label>
     </VerticalStackLayout>
 </ContentPage>

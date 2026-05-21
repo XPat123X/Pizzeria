@@ -8,30 +8,56 @@
             <CollectionView x:Name="CollectionMenu" ItemsSource="{Binding Menu}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <HorizontalStackLayout 
-                            MinimumHeightRequest="100"
-                            MaximumHeightRequest="100"
+                        <VerticalStackLayout x:Name="danieContainer">
+                            <Border
+                                MinimumHeightRequest="100"
+                                MaximumHeightRequest="100"
                             
-                            MinimumWidthRequest="300"
-                            MaximumWidthRequest="300"
+                                MinimumWidthRequest="350"
+                                MaximumWidthRequest="350"
+                                Margin="0,5,0,0">
+
+                                <HorizontalStackLayout>
+
+                                    <HorizontalStackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="MenuTab_Tapped"></TapGestureRecognizer>
+                                    </HorizontalStackLayout.GestureRecognizers>
+
+                                    <HorizontalStackLayout>
+                                        <Border>
+                                            <Image Source="{Binding Obraz}"
+                                                HeightRequest="50"
+                                                WidthRequest="50">
+
+                                            </Image>
+                                        </Border>
+
+
+                                        <VerticalStackLayout HorizontalOptions="Center">
+                                            <Label Text="{Binding Nazwa}"></Label>
+                                            <Label Text="{Binding Cena, StringFormat='{0:F2} zł'}"></Label>
+                                            <Label Text="{Binding Opis}"></Label>
+                                        </VerticalStackLayout>
+                                    </HorizontalStackLayout>
+
+
+
+
+                                </HorizontalStackLayout>
+                            </Border>
+
+                            <Border x:Name="BorderTapInfo" IsVisible="{Binding Wysuniete}"
+                                MinimumHeightRequest="100"
+                                MaximumHeightRequest="100"
+                            
+                                MinimumWidthRequest="350"
+                                MaximumWidthRequest="350"
                             >
-
-                            <HorizontalStackLayout.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="MenuTab_Tapped"></TapGestureRecognizer>
-                            </HorizontalStackLayout.GestureRecognizers>
-
-                            <Image Source="{Binding Obraz}"
-                                   HeightRequest="50"
-                                   WidthRequest="50"/>
-
-                            <VerticalStackLayout>
-                                <Label Text="{Binding Nazwa}"></Label>
-                                <Label Text="{Binding Cena}"></Label>
-                                <Label Text="{Binding Opis}"></Label>
-                            </VerticalStackLayout>
-                            
-
-                        </HorizontalStackLayout>
+                                <HorizontalStackLayout>
+                                    
+                                </HorizontalStackLayout>
+                            </Border>
+                        </VerticalStackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
