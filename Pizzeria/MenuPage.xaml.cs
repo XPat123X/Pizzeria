@@ -1,36 +1,26 @@
-﻿using Android.OS;
-using AndroidX.Core.Provider;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Globalization;
-using System.Runtime.CompilerServices;
 
 namespace Pizzeria
 {
-    public class Danie : ContentPage
+    public class Danie : INotifyPropertyChanged
     {
         public string Nazwa { get; set; }
         public string Opis { get; set; }
         public double Cena { get; set; }
         public string Obraz { get; set; }
-        public bool Wysuniete
-        {
-            get;
-            set {
-                if(Wysuniete != value)
-                {
-                    Wysuniete = value;
-                    OnPropertyChanged();
-                }
+        private bool _Wysuniete { get; set; }
+        public bool Wysuniete {
+            get
+            { 
+                return _Wysuniete;
             }
-        }
-        public event PropertyChangingEventHandler? PropertyChanged;
-        protected override void OnPropertyChanged([CallerMemberName] string? propertyName = null)
-        {
-            PropertyChanged?.Invoke(
-                this,
-                new
-                PropertyChangingEventArgs(propertyName)
-            );
+            set
+            {
+                _Wysuniete = value;
+                RaisePropertyChanged(nameof(Wysuniete));
+            }
         }
         public Danie(string nazwa, string opis, double cena, string obraz)
         {
@@ -40,11 +30,22 @@ namespace Pizzeria
             Obraz = obraz;
             Wysuniete = false;
         }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+        public virtual void RaisePropertyChanged(string propertyName)
+        {
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public void UstawWysuniete()
+        {
+            Wysuniete = !_Wysuniete;
+        }
     }
 
     public partial class MenuPage : ContentPage
     {
-        public ObservableCollection<Danie> Menu { get; } = new ObservableCollection<Danie>
+        public ObservableCollection<Danie> Menu { get; set; } = new ObservableCollection<Danie>
         {
             new Danie("Pizza", "Pizzowa", 12.50, "pizza_image.png"),
             new Danie("Pizza2", "Pizzogranie", 25.39, "pizza_image.png")
@@ -68,7 +69,7 @@ namespace Pizzeria
             Danie danie = stack.BindingContext as Danie;
 
             //DisplayAlert("a", danie.Nazwa, "a");
-            danie.Wysuniete = !danie.Wysuniete;
+            danie.UstawWysuniete();
         }
     }
 }
